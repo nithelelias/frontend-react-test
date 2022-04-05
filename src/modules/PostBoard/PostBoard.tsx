@@ -2,7 +2,6 @@ import './PostBoard.css';
 import React, { useState } from 'react';
 import Select from 'react-select';
 
-import AppLocalStorage from '../../core/AppLocalStorage';
 import ToggleButtonGroup from '../../components/ToggleButtonGroup';
 import icon_angular from "../../assets/image-138.png";
 import icon_angularx2 from "../../assets/image-138@2x.png";
@@ -20,12 +19,15 @@ import Paginator from '../../components/Paginator';
 import PostList from './components/PostList';
 
 import { myAppState, myPostsManager } from './PostsManagerContext';
-import { unmountComponentAtNode } from 'react-dom';
 
+/**
+ *  Array of options to be printed on the select topic filter
+ */
 const selectOptions = [
     {
         value: "angular", label: (<div style={{ display: 'flex', alignItems: 'center' }}>
             <img
+                alt="angular"
                 srcSet={`${icon_angular}, ${icon_angularx2} 2x, ${icon_angularx3} 3x`}
                 src={icon_angular} />
             <span style={{ marginLeft: 13 }}>Angular</span>
@@ -34,6 +36,7 @@ const selectOptions = [
     {
         value: "react", label: (<div style={{ display: 'flex', alignItems: 'center' }}>
             <img
+                alt="react"
                 srcSet={`${icon_react}, ${icon_reactx2} 2x, ${icon_reactx3} 3x`}
                 src={icon_react} />
             <span style={{ marginLeft: 13 }}>React</span>
@@ -42,14 +45,17 @@ const selectOptions = [
     {
         value: "vue", label: (<div style={{ display: 'flex', alignItems: 'center' }}>
             <img
+                alt="vue"
                 srcSet={`${icon_vue}, ${icon_vuex2} 2x, ${icon_vuex3} 3x`}
                 src={icon_vue} />
             <span style={{ marginLeft: 13 }}>Vue</span>
         </div>)
     }];
 
-
-const Visibility = {
+/**
+ *  dictionary with the two options of the views
+ */
+const ViewsTab = {
     ALL: "all",
     FAVS: "favs"
 };
@@ -60,7 +66,7 @@ const Visibility = {
 if (!myAppState.state.initiated) {
     myAppState.state.initiated = true;
     myAppState.state.selectedTopic = selectOptions[0].value;
-    myAppState.state.selectedView = Visibility.ALL;
+    myAppState.state.selectedView = ViewsTab.ALL;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -80,7 +86,7 @@ function requestHits(): Promise<Array<any>> {
     myPostsManager.setPage(myAppState.state.currentPage);
 
     let promiseexecution;
-    if (myAppState.state.selectedView == Visibility.ALL) {
+    if (myAppState.state.selectedView === ViewsTab.ALL) {
         promiseexecution = myPostsManager.executeQuery();
     } else {
         promiseexecution = myPostsManager.getFromLocalStorage();
@@ -182,7 +188,7 @@ const unbindLoopOnEnterFrame = ((function () {
                 // MOVE SCROLL UP
                 setTimeout(() => {
                     // VALIDATE IF THE maScrollChange  
-                    if (storeMaxScroll != getScrollMaxY()) {
+                    if (storeMaxScroll !== getScrollMaxY()) {
                         scrollNode.scrollTo(0, getScrollY() - 100);
                     }
                 }, 100);
@@ -198,7 +204,7 @@ const unbindLoopOnEnterFrame = ((function () {
                 // MOVE SCROLL UP
                 setTimeout(() => {
                     // VALIDATE IF THE maScrollChange 
-                    if (storeMaxScroll != getScrollMaxY()) {
+                    if (storeMaxScroll !== getScrollMaxY()) {
                         scrollNode.scrollTo(0, 200);
                     }
                 }, 100);
@@ -243,7 +249,7 @@ const unbindLoopOnEnterFrame = ((function () {
             let maxScrollY = getScrollMaxY();
             let scrollY = getScrollY();
             validateMinScreen();
-            if (lastScrollY != scrollY) {
+            if (lastScrollY !== scrollY) {
                 scrollDirection = lastScrollY < scrollY ? "down" : "up";
                 lastScrollY = scrollY;
                 if (scrollDirection === "down" && lastScrollY >= (maxScrollY)) {
@@ -252,7 +258,7 @@ const unbindLoopOnEnterFrame = ((function () {
                     goPrevPage();
                 }
             }
-        } 
+        }
     });
 
 
@@ -268,10 +274,10 @@ const unbindLoopOnEnterFrame = ((function () {
  */
 function SelectTopic() {
     const [selectedTopic, setTopic] = useState(myAppState.state.selectedTopic);
-    const [isvisible, setVisible] = useState(myAppState.state.selectedView == Visibility.ALL);
-    const currentValue = selectOptions.filter((option) => option.value == selectedTopic)[0];
+    const [isvisible, setVisible] = useState(myAppState.state.selectedView === ViewsTab.ALL);
+    const currentValue = selectOptions.filter((option) => option.value === selectedTopic)[0];
     const triggerPageChange = React.useCallback(() => {
-        setVisible(myAppState.state.selectedView == Visibility.ALL);
+        setVisible(myAppState.state.selectedView === ViewsTab.ALL);
     }, []);
 
     React.useEffect(() => {
@@ -356,8 +362,8 @@ function SwitchViewCom() {
     };
     return <div>
         <ToggleButtonGroup selected={currentView} onchange={(value: string) => changeView(value)}>
-            <button value={Visibility.ALL}>All</button>
-            <option value={Visibility.FAVS}>My Favs</option>
+            <button value={ViewsTab.ALL}>All</button>
+            <option value={ViewsTab.FAVS}>My Favs</option>
         </ToggleButtonGroup>
     </div>
 }
@@ -388,9 +394,9 @@ export default class PostBoard extends React.Component {
         // LETS UNBIND THE ON ENTERFRAME LISTENER.
         unbindLoopOnEnterFrame();
     }
-   
-    render() {         
-        return (<div> 
+
+    render() {
+        return (<div>
             <div className='full-width-row vhalign'>
                 <SwitchViewCom></SwitchViewCom>
             </div>

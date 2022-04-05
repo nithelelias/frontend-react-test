@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import PostType from "../PostType";
 import { myPostsManager } from '../PostsManagerContext';
 import PostCom from "./PostCom";
@@ -26,7 +26,7 @@ function NoDataFoundCom() {
 function PostList() {
     const [list, updatePostList] = useState(myPostsManager.getPostList());
     const triggerChange = React.useCallback(() => updatePostList(myPostsManager.getPostList()), []);
-   
+
     React.useEffect(() => {
         return myPostsManager.listenToDataChange(triggerChange);
     }, [triggerChange]);

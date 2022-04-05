@@ -10,26 +10,7 @@ import img_title_3x from "../assets/hacker-news@3x.png";
  * @returns 
  */
 export default function AppHeaderCom() {
-   
-    const [dimensions, setDimensions] = React.useState({
-        height: window.innerHeight,
-        width: window.innerWidth
-    })
-    React.useEffect(() => {
-        function handleResize() {
-            setDimensions({
-                height: window.innerHeight,
-                width: window.innerWidth
-            });
-        }
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }); 
- 
+    
     return <div className="app-header">
         <img
             alt="hacker news"

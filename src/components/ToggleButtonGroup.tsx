@@ -16,7 +16,7 @@ function ToggleButtonGroup(props: ToggleButtonProps) {
     return (
         <div className='toggle-button-wrapper valign'>
             {props.children.map((option, index) =>
-                <button key={index} className={'button ' + (props.selected == option.props.value ? "active" : "")} onClick={() => props.onchange(option.props.value)}>{option.props.children}</button>)}
+                <button key={index} className={'button ' + (props.selected === option.props.value ? "active" : "")} onClick={() => props.onchange(option.props.value)}>{option.props.children}</button>)}
 
         </div>
     );

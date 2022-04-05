@@ -50,7 +50,7 @@ export default function PostCom({ post }: { post: PostType; }) {
     };
 
     return <div className='post-card  pointer' onClick={(e) => {
-        if (favEl != null && favEl.current != null && (e.target != favEl.current && !(favEl.current as HTMLElement).contains(e.target as HTMLElement))) {
+        if (favEl !== null && favEl.current !== null && (e.target !== favEl.current && !(favEl.current as HTMLElement).contains(e.target as HTMLElement))) {
             openStoryLink();
         }
     }}>
@@ -58,6 +58,7 @@ export default function PostCom({ post }: { post: PostType; }) {
             <div className='full-width'>
                 <div className='full-width valign' style={{ height: "1rem", marginBottom: 6 }}>
                     <img
+                        alt="Time Ago"
                         srcSet={`${icon_time}, ${icon_time2x} 2x, ${icon_time3x} 3x`}
                         src={icon_time}
                     />  <span className='created-ago-text'>{createdAgo} by {post.author} </span>

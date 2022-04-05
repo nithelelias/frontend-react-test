@@ -1,23 +1,23 @@
-import React, { ReactNode, useRef } from "react";
+import React from "react";
 
-interface PaginatorProps {
+interface IPaginatorProps {
     max: number;
     selected: number;
     onchange: (value: number) => void
 };
 
-interface GroupNumButtons {
+interface IGroupNumButtons {
     max: number;
     selected: number;
     onchange: (value: number) => void
 }
 
 
-function GroupNumButtons(props: GroupNumButtons) {
+function GroupNumButtons(props: IGroupNumButtons) {
 
 
 
-    try {  
+    try {
         ///
         const max = props.max && !isNaN(props.max) ? props.max : 1;
         const selected = props.selected && !isNaN(props.selected) ? props.selected : 1;
@@ -32,7 +32,7 @@ function GroupNumButtons(props: GroupNumButtons) {
             <div className=' valign'>
                 {list.map((empty, index) => {
                     let num = 1 + min + index;
-                    return <button key={index} className={'  button-number ' + (props.selected == num ? "active" : "")} onClick={() => props.onchange(num)}>
+                    return <button key={index} className={'  button-number ' + (props.selected === num ? "active" : "")} onClick={() => props.onchange(num)}>
                         {num}
                     </button>
                 })}
@@ -51,11 +51,12 @@ function GroupNumButtons(props: GroupNumButtons) {
  * @returns 
  */
 
-function Paginator(props: PaginatorProps) {
-    const [dimensions, setDimensions] = React.useState({
+function Paginator(props: IPaginatorProps) {
+
+    const [, setDimensions] = React.useState({
         height: window.innerHeight,
         width: window.innerWidth
-    }); 
+    });
 
     React.useEffect(() => {
         function handleResize() {
@@ -80,10 +81,10 @@ function Paginator(props: PaginatorProps) {
         props.onchange(num);
     };
     return (
-        <div className='paginator vhalign ' >
-            <button className="button-number prev" onClick={() => onchangeChanger(props.selected - 1)} disabled={props.selected == 1} >{"<"}</button>
+        <div className='paginator vhalign '  >
+            <button className="button-number prev" onClick={() => onchangeChanger(props.selected - 1)} disabled={props.selected === 1} >{"<"}</button>
             <GroupNumButtons max={props.max} selected={props.selected} onchange={(num) => { onchangeChanger(num) }}></GroupNumButtons>
-            <button className="button-number after" onClick={() => onchangeChanger(props.selected + 1)} disabled={props.selected == props.max}>{">"}</button>
+            <button className="button-number after" onClick={() => onchangeChanger(props.selected + 1)} disabled={props.selected === props.max}>{">"}</button>
         </div>
     );
 }
