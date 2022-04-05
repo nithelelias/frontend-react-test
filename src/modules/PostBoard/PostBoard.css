@@ -45,8 +45,8 @@
     background-color: rgb(96 96 96 / 6%); 
 }
 
-.post-card .message-text {
-
+.post-card .message-text { 
+    max-height: 3rem;
     font-family: Roboto;
     font-size: 14px;
     font-weight: 500;
@@ -55,6 +55,10 @@
     line-height: 1.43;
     letter-spacing: 0.25px;
     color: #6b6b6b;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .post-card .created-ago-text {

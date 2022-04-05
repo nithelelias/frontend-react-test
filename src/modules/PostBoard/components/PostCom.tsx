@@ -58,13 +58,13 @@ export default function PostCom({ post }: { post: PostType; }) {
             <div className='full-width'>
                 <div className='full-width valign' style={{ height: "1rem", marginBottom: 6 }}>
                     <img
-                        alt="Time Ago"
+                        alt="Time"
                         srcSet={`${icon_time}, ${icon_time2x} 2x, ${icon_time3x} 3x`}
                         src={icon_time}
                     />  <span className='created-ago-text'>{createdAgo} by {post.author} </span>
 
                 </div>
-                <span className='message-text'> {post.story_title}</span>
+                <div className='message-text'> {post.story_title}</div>
             </div>
         </div>
         <div className='right-side favorite-side vhalign animated fadeIn' ref={favEl} onClick={() => toggleFav()}>

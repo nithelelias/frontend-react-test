@@ -218,7 +218,7 @@ class PostsManager {
                         return validateMinFieldsRequired(item);
                     }).map((item: PostType) => {
                         // GIVE IT AT APPID FROM OBJECTID OR AT LEAST CREATED_AT
-                        item.appID = item.objectID || moment(item.created_at).format("x");
+                        item.appID = item.objectID || (moment(item.created_at).format("x"));
                         return (item);
                     });
                     // response.page to store the page result // in case to multiple executions.
@@ -252,7 +252,7 @@ class PostsManager {
      */
     getFromLocalStorage() {
         this.setReady(false);
- 
+
         this.maxPages = Math.ceil(AppFavs.hits.length / this.hitsPerPage);;
         if (this.page > this.maxPages) {
             this.page = this.maxPages;
