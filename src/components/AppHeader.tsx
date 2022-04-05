@@ -9,8 +9,7 @@ import img_title_3x from "../assets/hacker-news@3x.png";
  *   show a simple image using
  * @returns 
  */
-export default function AppHeaderCom() {
-    
+export default function AppHeaderCom() { 
     return <div className="app-header">
         <img
             alt="hacker news"

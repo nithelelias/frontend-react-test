@@ -31,11 +31,7 @@
 .post-card:hover {
     opacity: .4;
 }
-
-.post-card:nth-child(2n) {
-    margin-right: 0px;
-}
-
+ 
 .post-card .left-side {
     width: calc(100% - 68px);
     background-color: #fff;
