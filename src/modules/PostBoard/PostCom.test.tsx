@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render } from "@testing-library/react";
-import PostType from "../PostType";
-import PostCom from "./PostCom";
+import PostType from "./PostType";
+import PostCom from "./components/PostCom";
 const post: PostType = {
     appID: "0",
     author: "string", // REQUIRE
@@ -32,8 +32,6 @@ test("click a post to open url ", () => {
     fireEvent.click(element);
     expect(myMock).toBeCalled();
     expect(myMock.mock.calls[0].join("-")).toBe([post.story_url, "_blank"].join("-"));
-
-
 });
 
 test("toggle fav a post ", () => {

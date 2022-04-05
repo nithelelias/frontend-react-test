@@ -34,21 +34,21 @@ const selectOptions = [
         </div>)
     },
     {
-        value: "react", label: (<div style={{ display: 'flex', alignItems: 'center' }}>
+        value: "reactjs", label: (<div style={{ display: 'flex', alignItems: 'center' }}>
             <img
                 alt="react"
                 srcSet={`${icon_react}, ${icon_reactx2} 2x, ${icon_reactx3} 3x`}
                 src={icon_react} />
-            <span style={{ marginLeft: 13 }}>React</span>
+            <span style={{ marginLeft: 13 }}>Reacts</span>
         </div>)
     },
     {
-        value: "vue", label: (<div style={{ display: 'flex', alignItems: 'center' }}>
+        value: "vuejs", label: (<div style={{ display: 'flex', alignItems: 'center' }}>
             <img
                 alt="vue"
                 srcSet={`${icon_vue}, ${icon_vuex2} 2x, ${icon_vuex3} 3x`}
                 src={icon_vue} />
-            <span style={{ marginLeft: 13 }}>Vue</span>
+            <span style={{ marginLeft: 13 }}>Vuejs</span>
         </div>)
     }];
 
@@ -294,7 +294,11 @@ function SelectTopic() {
                         changeLanguageHandler(selectedOption.value);
                         setTopic(selectedOption.value);
                     }
-                }} ></Select>
+                }}
+                components={{
+                    IndicatorSeparator: () => null
+                  }}
+                ></Select>
         </div> : null
     }</div>);
 
