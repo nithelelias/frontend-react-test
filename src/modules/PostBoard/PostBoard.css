@@ -1,0 +1,82 @@
+.select-lang-wrapper {
+    width: 240px;
+    max-width: 80%;
+    height: 32px;
+}
+
+.select-lang-row {
+    margin: 60px 0px;
+}
+
+
+
+.post-card {
+    width: calc(50% - 80px);
+    max-width: 550px;
+    height: 90px;
+    margin-bottom: 30px;
+    margin-right: 40px;
+    padding: 0 0 0 26px;
+    border-radius: 6px;
+    border: solid 1px #979797;
+    background-color: #fff;
+    float: left;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+.post-card:hover {
+    opacity: .4;
+}
+
+.post-card:nth-child(2n) {
+    margin-right: 0px;
+}
+
+.post-card .left-side {
+    width: calc(100% - 68px);
+    background-color: #fff;
+    position: relative;
+    height: 100%;
+}
+
+.post-card .right-side {
+    width: 68px;
+    height: 100%;
+    background-color: rgb(96 96 96 / 6%); 
+}
+
+.post-card .message-text {
+
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: 0.25px;
+    color: #6b6b6b;
+}
+
+.post-card .created-ago-text {
+
+    font-family: Roboto;
+    font-size: 11px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #767676;
+    margin-left: 6px;
+}
+
+@media (max-width:1000px) {
+    .post-card {
+        width: 90%;
+        max-width: 90%;
+    }
+}
